@@ -65,6 +65,7 @@
     "watchEffect": true,
     "watchPostEffect": true,
     "watchSyncEffect": true,
-    "ElNotification": true
+    "ElNotification": true,
+    "ElMessage": true
   }
 }

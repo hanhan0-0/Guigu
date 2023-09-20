@@ -3,6 +3,8 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 // 引入用户相关仓库
 import useUserStore from '@/store/modules/user'
+import router from '@/router/index'
+
 //第一步：利用axios对象的create方法，去创建axios实例（其他的配置：基础路径、超时的时间）
 const request = axios.create({
   //基础路径
@@ -21,6 +23,15 @@ request.interceptors.request.use((config) => {
 request.interceptors.response.use(
   (response) => {
     //成功回调
+    const userStore = useUserStore()
+    if (response.data.code === 201) {
+      userStore.userLogOut()
+      ElMessage({
+        type: 'error',
+        message: '登录过期，请先登录',
+      })
+      router.push({ path: '/login' })
+    }
     //简化数据
     return response.data
   },
@@ -29,9 +40,11 @@ request.interceptors.response.use(
     //定义一个变量:存储网络错误的信息
     let message = ''
     const status = error.response.status
+
     switch (status) {
       case 401:
         message = 'TOKEN过期'
+
         break
       case 403:
         message = '无权访问'

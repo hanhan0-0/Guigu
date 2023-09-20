@@ -2,7 +2,7 @@
 <template>
   <div class="layout_container">
     <!-- 左侧菜单 -->
-    <div class="layout_slide" :class="{ fold: layOutSettingStore.fold }">
+    <div class="layout_slide">
       <SliderBar></SliderBar>
     </div>
     <!-- 顶部导航 -->
@@ -18,7 +18,7 @@
       <router-view v-slot="{ Component }">
         <transition name="slide-fade" mode="out-in">
           <keep-alive>
-            <component :is="Component" v-if="flag" />
+            <component :is="Component" v-if="flag" :key="route.name" />
           </keep-alive>
         </transition>
       </router-view>
@@ -30,6 +30,7 @@
 import useLayOutSettingStore from '@/store/modules/setting'
 import useUserStore from '@/store/modules/user'
 const userStore = useUserStore()
+const route = useRoute()
 // 目前首页挂载完毕发请求获取用户信息
 onMounted(() => {
   userStore.userInfo()
@@ -83,6 +84,7 @@ watch(
     overflow: auto;
     padding: 20px;
     transition: all 0.3s;
+    background-color: white;
     &.fold {
       width: calc(100% - $base-menu-min-width);
       left: $base-menu-min-width;

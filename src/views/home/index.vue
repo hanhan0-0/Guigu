@@ -1,8 +1,15 @@
 <!-- 主体 -->
 <template>
-  <div><h1>一级路由展示登录成功以后的数据 home</h1></div>
+  <div><el-button @click="sendReq">点击发送请求</el-button></div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import useUserStore from '@/store/modules/user'
+const userStore = useUserStore()
+const sendReq = () => {
+  userStore.userLogOut()
+  userStore.userInfo()
+}
+</script>
 
 <style lang="scss" scoped></style>

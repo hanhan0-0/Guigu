@@ -13,6 +13,9 @@ import '@/styles/index.scss'
 import gloalComponent from '@/components'
 import router from './router'
 import pinia from './store'
+// 引入路由鉴权文件
+import './permisstion'
+
 const app = createApp(App)
 //安装element-plus插件
 app.use(ElementPlus, {
