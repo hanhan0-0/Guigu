@@ -16,11 +16,9 @@
       v-if="flag"
     >
       <router-view v-slot="{ Component }">
-        <transition name="slide-fade" mode="out-in">
-          <keep-alive>
-            <component :is="Component" v-if="flag" :key="route.name" />
-          </keep-alive>
-        </transition>
+        <!-- <transition name="slide-fade" mode="out-in"> -->
+        <component :is="Component" :key="route.name" />
+        <!-- </transition> -->
       </router-view>
     </div>
   </div>

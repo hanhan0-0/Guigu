@@ -55,12 +55,23 @@ const fullScreen = () => {
   }
 }
 // 点击退出登陆的回调
-const logOut = () => {
+const logOut = async () => {
   // 第一件事情：需要向服务器发请求【退出登录接口】
   // 第二件事情：仓库中关于用户相关的数据清空【token|username|avatar】
   // 第三件事情：跳转到登录页面
-  userStore.userLogOut()
-  router.push({ path: '/login', query: { redirect: route.path } })
+  try {
+    await userStore.userLogOut()
+    router.push({ path: '/login', query: { redirect: route.path } })
+    ElMessage({
+      type: 'success',
+      message: '退出登录成功',
+    })
+  } catch (e) {
+    ElMessage({
+      type: 'error',
+      message: e.message,
+    })
+  }
 }
 </script>
 

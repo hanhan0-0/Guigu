@@ -7,7 +7,7 @@
 import useUserStore from '@/store/modules/user'
 const userStore = useUserStore()
 const sendReq = () => {
-  userStore.userLogOut()
+  // userStore.userLogOut()
   userStore.userInfo()
 }
 </script>

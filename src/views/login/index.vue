@@ -68,7 +68,7 @@ const refs = reactive([])
 const setRefs = (el) => {
   refs.push(el)
 }
-const loginForm = reactive({ username: '18841426949', password: '123456' })
+const loginForm = reactive({ username: 'admin', password: 'atguigu123' })
 const loginForms = ref()
 let isIn = true //鼠标进去的门，默认打开
 let isOut = false //鼠标出去的门，默认关闭
@@ -158,15 +158,15 @@ const rules = {
     // { required: true, message: 'Please input Activity name', trigger: 'blur' },
     {
       require: true,
-      min: 11,
+      min: 4,
       max: 11,
-      message: '账号长度应为11位',
+      message: '账号长度应大于4小于11',
       trigger: 'change',
     },
-    {
-      trigger: 'change',
-      validator: validatorUserName,
-    },
+    // {
+    //   trigger: 'change',
+    //   validator: validatorUserName,
+    // },
   ],
   password: [
     // { require: true, message: '不能为空', trigger: 'blur' },
@@ -177,10 +177,10 @@ const rules = {
       message: '密码长度在6到10位之间',
       trigger: 'change',
     },
-    {
-      trigger: 'change',
-      validator: validatorPassword,
-    },
+    // {
+    //   trigger: 'change',
+    //   validator: validatorPassword,
+    // },
   ],
 }
 

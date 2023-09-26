@@ -9,7 +9,7 @@ import router from '@/router/index'
 const request = axios.create({
   //基础路径
   baseURL: import.meta.env.VITE_APP_BASE_API,
-  timeout: 5000,
+  // timeout: 5000,
 })
 //第二步：request实例添加请求与响应拦截器
 request.interceptors.request.use((config) => {
@@ -21,11 +21,11 @@ request.interceptors.request.use((config) => {
 })
 //第三步：相应拦截器
 request.interceptors.response.use(
-  (response) => {
+  async (response) => {
     //成功回调
     const userStore = useUserStore()
-    if (response.data.code === 201) {
-      userStore.userLogOut()
+    if (response.data.code !== 200 && response.data.code !== 201) {
+      await userStore.userLogOut()
       ElMessage({
         type: 'error',
         message: '登录过期，请先登录',

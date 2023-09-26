@@ -18,6 +18,8 @@ router.beforeEach((to: any, from: any, next: any) => {
   nprogress.start()
 
   const userStore = useUserStore()
+  console.log(userStore.token)
+
   if (userStore.token) {
     // 登录成功
     if (to.path == '/login') {
